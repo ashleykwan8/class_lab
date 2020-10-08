@@ -22,7 +22,21 @@ Return:
 """
 
 # Write your function here
+hometown = "San Francisco"
+your_hometown = input("What's the name of your hometown?>")
+print()#adding space
 
+def matching_hometowns(hometown):
+    """Checks if your hometown matches the given hometown."""
+
+    if your_hometown == hometown: #check if both match
+        return True
+
+    else:
+        return False
+
+print(matching_hometowns(hometown))#call the function
+print()#adding space
 
 """PROMPT 2
 
@@ -40,8 +54,18 @@ Return:
 """
 
 # Write your function here
+first = input("What is your first name?>")#ask for first name
+last = input("What is your last name?>")#ask for last name
+print()#adding space
 
+def full_name(first,last): 
+    """Prints out the full name from the given first and last name."""
 
+    return f"{first} {last}"#return full name
+
+print(full_name(first,last))
+
+print()#adding space
 """PROMPT 3
 
 Write a function that prints a greeting.
@@ -66,6 +90,22 @@ Arguments:
 
 # Write your function here
 
+def greeting(hometown,first,last):
+    """Greet the user and say if they're from the same place or wanting to visit their hometown"""
+
+    hometown = matching_hometowns(hometown)#reusing function
+    name = full_name(first,last)#reusing function
+
+    if hometown == "San Francisco":
+        return f"Hello {name}, we're from the same town!"
+
+    else:
+        return f"Hey {name}, I want to visit {your_hometown} some day!"
+
+print(greeting(hometown, first, last))#call function
+
+print()#adding space
+
 
 """PROMPT 4
 
@@ -89,6 +129,23 @@ Return:
 """
 
 # Write your function here
+fruits = input("Write the name of a fruit: ")
+berries = ['strawberry', "raspberry", 'blackberry', 'currant','blueberry','boysenberry']
+
+def identify_berry(fruits):
+    """See if the given fruits are berries or not"""
+    
+    # berries = ['strawberry', "raspberry", 'blackberry', 'currant','blueberry','boysenberry']#list of potential berries
+
+    if fruits in berries: #check if given fruit is in the berries list
+        return "Yes, that's a berry!"
+
+    else:
+        return "Sorry, that's not a berry" 
+
+print(identify_berry(fruits)) #call function
+
+print()#adding space
 
 
 """PROMPT 5
@@ -105,7 +162,19 @@ Return:
 """
 
 # Write your function here
+def shipping_cost(fruits):
+    """Tells user the shipping cost for berries or other items"""
+    berry = identify_berry(fruits) #getting input from previous function
 
+    if fruits in berries: #comparing input to the berries list
+        return f"The {fruits} will ship for FREE!"
+    
+    else:
+        return f"The {fruits} will cost $5 to ship."
+
+print(shipping_cost(fruits))#call the function
+
+print()#adding space
 
 """PROMPT 6
 
@@ -134,7 +203,41 @@ Return:
 """
 
 # Write your function here
+price = float(input("How much is your item?> "))
+state = input("Choose a state [CA, PA, MA] > ")
 
+print()#adding space
+
+def total_cost(price,state,tax_and_fees = 0.05):
+    """Calculate the taxes and cost by state"""
+
+    CA_tax = 0.03
+    PA_fee = 2.00
+    MA_fee = 1.00 #if cost is < $100
+    MA_added_fee = 3.00 #if cost is > $100
+
+    total_price = 0 
+
+    if state == "CA":
+        CA_total = price + CA_tax
+        total_price += CA_total
+
+    elif state == "PA":
+        PA_total = price + PA_fee
+        total_price += PA_total
+    
+    elif state == "MA": #MA has 2 conditions
+        if price < 100.00:
+            MA_total = price + MA_fee
+            total_price += MA_total
+        else:
+            total_price = price + MA_added_fee
+    
+    return f"Your total cost is: ${float(total_price)}"
+
+print(total_cost(price,state,tax_and_fees = 0.05))#call the function
+
+print()#adding space
 
 """PROMPT 7
 
@@ -155,6 +258,17 @@ Return:
 """
 
 # Write your function here
+groceries = ['cereal', 'bananas', 'almond milk', 'spinach']
+
+def grocery_list(groceries, *added_groceries):
+    """Add groceries to the current grocery list"""
+    
+    return groceries + list(added_groceries)#add to the groceries list and change tuple into a list
+
+
+print(grocery_list(groceries, 'tofu', 'apples'))#call the function
+
+print()#adding space
 
 
 """PROMPT 8
@@ -182,3 +296,19 @@ Return:
 """
 
 # Write your function here
+users_word = input("Type in a word: ")
+
+def create_a_tuple(users_word):
+    """Take in a word and mulitply it by 3"""
+
+
+    def multiple_word(users_word, n=3): #hidden from outer function
+        return users_word * n
+        
+    
+    new_word = multiple_word(users_word, n=3)#call the inner function
+
+    # return word, new_word 
+    return users_word, (new_word) #return the user's word and the tuple
+
+print(create_a_tuple(users_word))#call the outer function

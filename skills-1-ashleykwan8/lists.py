@@ -23,13 +23,14 @@ def listed_pets(pets):
         berry 1
         cherry 2
     """
-    for i in pets:
-      return pets [i]
+    for i in range(len(pets)): #getting the indices of element
+        print(f"{pets[i]} {i}") #return the element with the index 
     
-    print(listed_pets(['cat', 'dog', 'fish', 'bird']))
+listed_pets(['cat', 'dog', 'fish', 'bird'])
+print()
 
 
-def words_in_common(words1, words2):
+def words_in_common(words1, words2): 
     """Return words that are shared between `words1` and `words2`.
 
     The returned words are sorted alphabetically.
@@ -62,10 +63,26 @@ def words_in_common(words1, words2):
         []
     """
 
-    return ['the wrong thing']
+    words1_set = set(words1) #change into set()
+    words2_set = set(words2) #change into set()
+    
+    if (words1_set & words2_set): #check each element in the sets()
+
+        return str((list(words1_set & words2_set))) #return the words in common
+
+    else:
+        return []
+    
 
 
-def every_other_item(items):
+print(words_in_common(['Python', 'Python', 'Python'],['Lizard', 'Turtle', 'Python']))
+print(words_in_common(['lamb', 'chili', 'cheese'],['cake', 'ice cream']))
+print(words_in_common(['cheese', 'cheese', 'cheese', 'cake'],['cheese', 'hummus', 'beets', 'cake']))
+
+print()
+
+
+def every_other_animal(animals):
     """Return every other item in `items`, starting at first item.
 
     For example:
@@ -73,11 +90,13 @@ def every_other_item(items):
        >>> every_other_item(['a', 400, True, 'b', 0])
        ['a', True, 0]
     """
+    return animals[::2] #slicing every 2 steps starting at index 0
 
-    return ['the wrong thing']
+print(every_other_animal(['cow','horse','sheep','pig','goat']))
+print()
 
 
-def smallest_n_items(items, n):
+def smallest_n_numbers(nums, n):
     """Return the `n` smallest integers in list in descending order.
 
     You can assume that `n` will be less than the length of the list.
@@ -97,5 +116,12 @@ def smallest_n_items(items, n):
         >>> smallest_n_items([1, 1, 1, 1, 1, 1], 2)
         [1, 1]
     """
+    if n < len(nums): #if n is less than the length of the list
+        sorted_nums = sorted(nums) #sort the list
+        return sorted_nums[:n] 
 
-    return []
+    else: #if n = 0
+        return []
+
+print(smallest_n_numbers([3, 5, 7, 9, 11, 18], 2))
+print(smallest_n_numbers([1, 45, 7, 88, 110, 2], 0))
